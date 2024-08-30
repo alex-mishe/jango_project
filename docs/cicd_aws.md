@@ -14,7 +14,7 @@ There are two pipelines in GitHub Actions:
 
 1. **Build & Deploy to EKS** - This pipeline builds the Docker container image, pushes it to AWS ECR, and deploys it to Kubernetes (AWS EKS).
 https://github.com/alex-mishe/jango_project/actions/runs/10631422732
-- Result:
+
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/947680cf-4f71-4039-bee1-62c4912fbb2c">
 
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/a7836582-d13b-49f1-ba65-956350bcd01b">
@@ -24,7 +24,7 @@ https://github.com/alex-mishe/jango_project/actions/runs/10631422732
 
 2. **Terraform Plan and Apply** - This pipeline builds the AWS Cloud infrastructure, including the VPC network, two subnets, the EKS Cluster, node groups, and other resources.
 https://github.com/alex-mishe/jango_project/actions/runs/10631444900
-- Result:
+
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/3c1e36c5-5bc7-428b-a369-33b9957ef3f1">
 
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/c194e531-93b8-4d07-993f-6b29cf3877aa">
