@@ -1,0 +1,14 @@
+<!-- orders/templates/orders/order_list.html -->
+
+<table>
+    <tr>
+        <th>Pizza Type</th>
+        <th>Comments</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.pizza_type }}</td>
+        <td>{{ order.comments }}</td>
+    </tr>
+    {% endfor %}
+</table>
