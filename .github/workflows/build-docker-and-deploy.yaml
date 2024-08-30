@@ -1,0 +1,117 @@
+name: Build & Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-west-2
+  AWS_ACCOUNT_ID: 270313859272
+  ECR_REPOSITORY: my-pizza-app-repo
+  EKS_CLUSTER_NAME: education-eks-awYqiW4s
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 yamllint
+
+    - name: Run flake8 for Python linting
+      run: |
+        flake8 . || true  # Run flake8 and don't fail the job if it exits with a non-zero code
+
+    - name: Run yamllint for YAML linting
+      run: |
+        yamllint . || true  # Run yamllint and don't fail the job if it exits with a non-zero code
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Log in to Amazon ECR
+      id: ecr-login
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Build Docker image
+      run: |
+        IMAGE_URI="${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest"
+        docker build -t $IMAGE_URI .
+
+    - name: Push Docker image to ECR
+      run: |
+        IMAGE_URI="${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest"
+        docker push $IMAGE_URI
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
+
+    - name: Verify connection to the EKS cluster
+      run: |
+        kubectl get nodes
+
+    - name: Verify config current-context
+      run: |
+        kubectl config current-context
+
+    #- name: Delete deployment pizza-deployment
+    #  run: |
+    #    kubectl delete deployment pizza-deployment --namespace=default
+        
+    - name: Apply ConfigMap
+      run: |
+        kubectl apply -f kubernetes/aws-auth.yaml
+        
+    - name: Apply ConfigMap
+      run: |
+        kubectl apply -f kubernetes/logging-configmap.yaml
+
+    - name: Apply Deployment
+      run: |
+        kubectl apply -f kubernetes/deployment.yaml
+
+    - name: Apply Service
+      run: |
+        kubectl apply -f kubernetes/lb.yaml
