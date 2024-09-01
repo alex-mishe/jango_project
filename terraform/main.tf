@@ -12,6 +12,10 @@ terraform {
   }
 }
 
+resource "aws_ecr_repository" "my_pizza_app_repo" {
+  name = "my-pizza-app-repo"
+}
+
 # with managed node groups
 data "aws_availability_zones" "available" {
   filter {

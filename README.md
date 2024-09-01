@@ -8,3 +8,4 @@ This project is a Django-based web application for placing and managing pizza or
 2. [CI/CD Process in AWS Cloud](docs/cicd_aws.md)
 3. [Deploy from Local Machine to EKS](docs/deploy_local_to_eks.md)
 4. [AWS Infrastructure Overview](docs/aws_infrastructure.md)
+5. [Creation Pull Requests process](docs/creation_PR.md)
