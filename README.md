@@ -6,9 +6,9 @@ All resources have been deleted to save costs. To start using the application ag
    To deploy the application, run the deployment command as outlined in Step 2 of the [Deployment Instructions](docs/cicd_aws.md).
 
 2. **Follow the Deployment Guides:**
-   - [Deploy to Local Machine](docs/deploy_local.md)
-   - [Deploy to AWS Cloud using CI/CD](docs/cicd_aws.md)
-   - [Deploy from Local Machine to EKS](docs/deploy_local_to_eks.md)
+   - [Deploy to Local Machine for Debugging Python](docs/deploy_local.md)
+   - [Deploy using CI/CD to AWS Cloud/EKS](docs/cicd_aws.md)
+   - [Commands for Managing AWS/EKS Cluster](docs/deploy_local_to_eks.md)
 
 3. **Understand the Infrastructure:**
    - [AWS Infrastructure Overview](docs/aws_infrastructure.md)
