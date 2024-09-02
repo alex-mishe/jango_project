@@ -1,11 +1,21 @@
-# Pizza Ordering Application
+## Important Notice
 
-This project is a Django-based web application for placing and managing pizza orders. It can be deployed locally, with Docker, on Kubernetes, Terraform, and CI/CD via GitHub Actions.
+All resources have been deleted to save costs. To start using the application again, please follow these steps:
 
-## Contents
+1. **Deploy the Application:**
+   To deploy the application, run the deployment command as outlined in Step 2 of the [Deployment Instructions](docs/cicd_aws.md).
 
-1. [Deploy to Local Machine](docs/deploy_local.md)
-2. [CI/CD Process in AWS Cloud](docs/cicd_aws.md)
-3. [Deploy from Local Machine to EKS](docs/deploy_local_to_eks.md)
-4. [AWS Infrastructure Overview](docs/aws_infrastructure.md)
-5. [Creation Pull Requests process](docs/creation_PR.md)
+2. **Follow the Deployment Guides:**
+   - [Deploy to Local Machine for Debugging Python](docs/deploy_local.md)
+   - [Deploy using CI/CD to AWS Cloud/EKS](docs/cicd_aws.md)
+   - [Commands for Managing AWS/EKS Cluster](docs/deploy_local_to_eks.md)
+
+3. **Understand the Infrastructure:**
+   - [AWS Infrastructure Overview](docs/aws_infrastructure.md)
+
+4. **Creation Pull Requests Process:**
+   - [Creation Pull Requests Process](docs/creation_PR.md)
+
+## Project Overview
+
+This project is a Django-based web application for placing and managing pizza orders.

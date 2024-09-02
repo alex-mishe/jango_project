@@ -20,9 +20,9 @@ EXTERNAL-IP is URL: ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.ama
 ```
 
 **Web Application URLs**:
-1. Go to  http://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/admin to access the admin panel and manage users and orders.
-2. Go to http://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/place_order/ to place an order.
-3. Go to https://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/orders/ to view orders.
+- Go to  http://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/admin to access the admin panel and manage users and orders.
+- Go to http://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/place_order/ to place an order.
+- Go to https://ace2735b7d24d4bfdb7716e9f4eeb1b3-665816103.us-west-2.elb.amazonaws.com/orders/ to view orders.
 
 2. Run **Build & Deploy to EKS** from main branch. This pipeline builds the Docker container image, pushes it to AWS ECR, and deploys it to Kubernetes (AWS EKS).
 
