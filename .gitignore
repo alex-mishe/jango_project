@@ -11,7 +11,8 @@ __pycache__/
 media/
 
 # Terraform
-terraform/.terraform/
+terraform/.terraform/*
+terraform/.terraform.lock.hcl
 # Virtualenv
 venv/
 .env
@@ -21,3 +22,5 @@ venv/
 
 # Other
 *.log
+.DS_Store
+.github/.DS_Store

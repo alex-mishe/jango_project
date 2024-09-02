@@ -10,7 +10,7 @@ env:
   AWS_REGION: us-west-2
   AWS_ACCOUNT_ID: 270313859272
   ECR_REPOSITORY: my-pizza-app-repo
-  EKS_CLUSTER_NAME: education-eks-awYqiW4s
+  EKS_CLUSTER_NAME: education-eks-eRIkJX5Z
 
 jobs:
   lint:
@@ -111,11 +111,7 @@ jobs:
     - name: Verify config current-context
       run: |
         kubectl config current-context
-
-    #- name: Delete deployment pizza-deployment
-    #  run: |
-    #    kubectl delete deployment pizza-deployment --namespace=default
-        
+    
     - name: Apply ConfigMap
       run: |
         kubectl apply -f kubernetes/aws-auth.yaml
